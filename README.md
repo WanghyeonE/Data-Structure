@@ -46,19 +46,20 @@ Queue라는 단어에서도 알 수 있듯이 데이터가 들어오는 위치�
 	    int* nodeData;
 	    NODE* node;
 
-	    newData = (int*)malloc(sizeof(int));
-	    *newData = 7;
-	    node = createNode(newData);
-	    newData = (int*)malloc(sizeof(int));
-	    *newData = 75; 
-	    node->link = createNode(newData); 
-	    nodeData = (int*)node->dataPtr;
-	    printf("data1: %d\n", *nodeData);
-	    nodeData = (int*)node->link->dataPtr; 
-	    printf("data2: %d\n", *nodeData);
+	    newData = (int*)malloc(sizeof(int));   // 메모리 할당
+	    *newData = 7;                          // newData에 데이터(7) 저장
+	    node = createNode(newData);            // 1번 노드를 생성하고 노드에 데이터 저장
+	    newData = (int*)malloc(sizeof(int));   // 메모리 할당
+	    *newData = 75;                         // newData에 데이터(75) 저장
+	    node->link = createNode(newData);      // 1번 노드의 링크에 2번 노드 연결
+	    nodeData = (int*)node->dataPtr;        // nodeData에 1번 노드에 저장되어 있는 데이터 저장
+	    printf("data1: %d\n", *nodeData);      // 1번 노드의 데이터 출력
+	    nodeData = (int*)node->link->dataPtr;  // nodeData에 2번 노드에 저장되어 있는 데이터 저장
+	    printf("data2: %d\n", *nodeData);      // 2번 노드의 데이터 출력
 	    return 0;
     }  
-노드를 2개 생성하여 각각의 노드에 7과 75를 저장하고 두 노드를 연결하는 메인문이다.
+노드를 2개 생성하여 각각의 노드에 7과 75를 저장하고 두 노드를 연결하는 메인문이다.  
+우선 malloc함수를 이용한 동적할당을 통해서 newData의 메모리를 할당한다. newData에 int형의 데이터를 저장할 것이기 때문에 할당받을 메모리의 크기는 int형의 크기만큼만 할당받아서 메모리 낭비를 최소화한다. newData에 7이라는 값을 저장하고 createNode라는 함수를 호출한다. 함수를 정의할 때 노드를 생성함과 동시에 함수를 호출하면서 사용한 인수를 바로 노드에 저장하므로 1번 노드에는 7이라는 값이 저장된다. 같은 방법으로 다시 메모리를 할당하고 newData에 75라는 값을 저장한다. 이번에는 2번 노드를 생성하면서 바로 1번 노드의 링크(node->link)에 2번 노드의 주소가 저장되고 2번 노드에는 75라는 값이 저장된다. nodeData에는 1번 노드에 저장되어 있는 int형의 데이터((int*)node->dataPtr)가 저장되며 그 값을 출력한다. 그 다음 nodeData에는 1번 노드의 링크에 저장되어 있는 주소의 데이터 즉, 2번 노드의 데이터(node->link->dataPtr)가 저장되며 그 값을 출력한다.
 
 # 2. factorial
 재귀함수의 간단한 예로 factorial을 구현하였다. 
