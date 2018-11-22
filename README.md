@@ -24,13 +24,13 @@ Queue라는 단어에서도 알 수 있듯이 데이터가 들어오는 위치�
 
 한 노드에는 데이터를 저장하는 부분(data)과 다음 데이터의 위치를 나타내는 부분(link)이 있으며 첫 번째 노드인 헤더(header)는 첫 번째 데이터가 어디 있는지 알려주며 마지막 노드의 링크(link)는 다음 데이터가 없으므로 마지막이라는 것을 알려주기 위해 NULL값을 세팅한다.  
 
-    typedef struct node {  
-	    void *dataPtr;  
-	    struct node* link;  
+    typedef struct node {           // typedef는 설정되어있는 자료형(data type)을 사용자가 알아보기 쉽도록 임의로 이름을 바꾸는 함수
+	    void *dataPtr;          // 노드에 어떤 데이터가 저장될 지 알수 없으므로 자료형에 void를 사용
+	    struct node* link;      // 노드의 link는 다음 노드의 주소를 저장하므로 재귀방법을 
     } NODE;  
 노드를 정의하는 부분이다. node라는 구조체를 NODE타입으로 정의하여 뒤에 노드를 생성할 때 한눈에 쉽게 들어오도록 하였다. 노드 안에는 데이터를 저장하는 부분(dataPtr)과 다음 노드의 위치를 알려주는 부분(link)으로 구성되어 있다.
 
-    NODE* createNode(void* itemPtr)             // void형의 itemPtr를 인수로 가지는 createNode라는 함수를 생성
+    NODE* createNode(void* itemPtr)                   // void형의 itemPtr를 인수로 가지는 createNode라는 함수를 생성
     {
 	    NODE* nodePtr = NULL;                     // NODE타입의 nodePtr노드를 NULL값으로 초기화
 	    nodePtr = (NODE*)malloc(sizeof(NODE));    // nodePtr노드를 NODE타입의 크기만큼 메모리 할당
